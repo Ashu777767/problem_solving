@@ -1,0 +1,42 @@
+# C++ object files
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Executable files
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# Build directories
+/build
+/bin
+/Debug
+/Release
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Logs and system files
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Dependency/package management (if any in future)
+conan.lock
+conanfile.lock
