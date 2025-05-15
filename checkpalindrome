@@ -9,7 +9,7 @@ bool checkpalindrome(string s,int n){
             st++;
         }
         else if(!((s[e]>='a' && s[e]<='z') || (s[e]>='A' && s[e]<='Z') || (s[e]>='0' && s[e]<='9'))){
-            e++;
+            e--;
         }else if(tolower(s[st]) != tolower(s[e])){
             return 0;
         }else{
