@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+void reversestring(string &s,int n){
+    int st = 0;
+    int e = n-1;
+    while(st<e){
+        swap(s[st++],s[e--]);
+    }
+}
+
+int main() {
+    string s;
+    cout<< "enter the string name:"<<endl;
+    cin>>s;
+    int n =  s.size();
+    int count = 0;
+    for(int i = 0;s[i]!='\0';i++){
+        count++;
+    }
+    reversestring(s,n);
+  cout<< count<<endl;
+  cout<<s<<endl;
+    return 0;
+}
+
