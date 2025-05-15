@@ -1,0 +1,26 @@
+#include <bits/stdc++.h> 
+string replaceSpaces(string &str){
+	int spacecnt = 0;
+	for(int i = 0;i<str.length();i++){
+		if(str[i] == ' '){
+			spacecnt++;
+		}
+	}
+	int n = str.size();
+	int newlength = n + (2*spacecnt);
+	str.resize(newlength);
+	int i = n-1;
+	int j = newlength-1;
+	while(i>=0){
+		if(str[i] == ' '){
+			str[j--] = '0';
+			str[j--] = '4';
+			str[j--] = '@';
+		}
+		else{
+			str[j--] = str[i];
+		}
+		i--;
+	}
+	return str;
+}
