@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+
+
+int main() {
+    string s;
+    cout<< "enter the string name:"<<endl;
+    getline(cin,s);
+    int n =  s.size();
+    int count[26] = {0};
+    for(int i = 0;i<n;i++){
+        int ch = s[i]-'a';
+        count[ch]++;
+    }
+    int max  = -1,ans = -1;
+    for(int i = 0;i<26;i++){
+        if(max<count[i]){
+            max = count[i];
+            ans = i;
+        }
+    }
+    char ch = ans+'a';
+    cout<< "the higest frequency character is:"<<ch <<endl;
+    
+    return 0;
+}
