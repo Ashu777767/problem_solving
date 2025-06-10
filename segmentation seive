@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+#include<math.h>
+int main() {
+    int L,R;
+    cout<<"enter the range from L to R"<<endl;
+    cin>>L>>R;
+    cout<<"sqrt of r:";
+    int r = (int)sqrt(R);
+cout<<r;
+    vector<bool>prime(r+1,true);
+    vector<int>values;
+    for(int i = 2;i<=r;i++){
+        if(prime[i]){
+            values.push_back(i);
+            for(int j = 2*i;j<r;j=j+i){
+                prime[j] = 0;
+            }
+        }
+    }
+    cout<<endl;
+    cout<<"chal raha hai naa"<<endl;
+    int len = R-L + 1;
+    vector<int>isprime(len,true);
+for(int k = 0;k<values.size();k++){
+    for(int i = L;i<=R;i++){
+        if(isprime[i-L]){
+            if(i%values[k] == 0){
+                isprime[i-L] = 0;
+            }
+        }
+    }
+}
+for(int i = L;i<=R;i++){
+    if(isprime[i-L]){
+        cout<<i<<" ";
+    }
+}
+    
+    return 0;
+}
