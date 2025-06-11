@@ -1,0 +1,22 @@
+#include<iostream>
+    using namespace std;
+    int fact(int val){
+        int res = 1;
+        for(int i = 1;i<=val;i++){
+            res = res*i;
+        }
+        return res;
+    }
+    int find(int n) {
+    int catalon = fact(2*n)/(fact(n+1)*fact(n));
+    return catalon;
+}
+
+int main()
+{
+    int n;
+    cout<<"enter the values:"<<endl;
+    cin>>n;
+    cout<< find(n);
+return 0;
+}  
