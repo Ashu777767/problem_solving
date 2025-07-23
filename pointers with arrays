@@ -1,0 +1,55 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+ void check(int *p){
+       p = p+1;
+   }
+   int getsum(int *arr,int n){
+        int sum = 0;
+       for(int i = 0;i<n;i++){
+           sum +=arr[i];
+       }
+       return sum;
+   }
+int main() {
+    // basic concept
+   int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+   cout<< "1.array size is: "<<arr<<endl;
+   cout<<"2.array size is: "<<arr[0]<<endl;
+   cout<<"3.array size is: "<<&arr[0]<<endl;
+   cout<<"4.array size is: "<<*arr<<endl;
+   //writing array values using these formula's
+   cout<<arr[2] <<" and "<<*(arr+2)<<endl;
+   cout<<3[arr] <<" and "<<*(3+arr)<<endl;
+   int *ptr = &arr[2];
+   cout<<*ptr<<endl;
+   ptr = ptr+1;
+   cout<<*ptr<<endl;
+   //arr = arr+1; this is wrong we can't modify symbol table of arr
+   
+   //character array using pointer
+   char ch[6] = "abcde";
+   char *c = ch;
+   cout<<ch<<endl;
+   cout<<c<<endl;
+   cout<<*c<<endl;
+   
+   //functions using pointers
+  
+   int val = 5;
+   int *p = &val;
+   cout<<"before "<<p<<endl;
+   check(p);
+   cout<<"after "<<p<<endl;
+   //if i do pass by reference then
+   /*cout<<"before "<<p<<endl;
+   //check(&p);
+   cout<<"after "<<p<<endl;*/
+   //benefits
+  
+   cout<< "the sum is:"<<getsum(arr+5,5)<<endl;
+   
+    return 0;
+    
+}
