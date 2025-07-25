@@ -1,0 +1,45 @@
+
+#include <iostream>
+using namespace std;
+int getsum(int*arr,int m){
+    int sum=0;
+    for(int i =0;i<m;i++){
+        sum +=arr[i];
+    }
+    return sum;
+}
+void update(int &j){//pass by reference
+    j++;
+}
+int main() {
+    //reference variable create kese kiya
+     int i=5;
+     i++;
+     cout<<i<<endl;
+     int &j=i;
+     j++;
+     cout<<i<<endl;
+     cout<<endl<<"ab functions pe try karte hai"<<endl;
+     int n=7;
+     cout<<n<<endl;
+     update(n);
+     cout<<n<<endl;
+     int *k=new int;
+     *k=5;
+     cout<<*k<<endl;
+     //dynamic allocation ke madad se variable array banana aur run karna
+     int m;
+     cout<<"enter the m value:"<<endl;
+     cin>>m;
+     int *arr=new int[m];
+     cout<<"enter the values:"<<endl;
+     for(int f=0;f<m;f++){
+         cin>>arr[f];
+     }
+     int jawab=getsum(arr,m);
+     cout<<jawab<<endl;
+    return 0;
+    
+    
+    
+}
