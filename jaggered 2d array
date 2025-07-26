@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cout<<"enter the n values:"<<endl;
+    cin>>n;
+    //2d array using dynamic memory;
+    //creating multiple rows
+    int **arr=new int*[n];
+    //creating corresponding column
+    
+    for(int i =0;i<n;i++){
+        int size = (i==1)?2:(i==2)?3:4;
+        arr[i]=new int[size];
+    }
+    cout<<"all  good"<<endl;
+    //taking user input
+    for(int i =0;i<n;i++){
+        for(int j=0;j<((i==1)?2:(i==2)?3:4);j++){
+            cin>>arr[i][j];
+        }
+    }
+    for(int i =0;i<n;i++){
+        for(int j=0;j<((i==1)?2:(i==2)?3:4);j++){
+            cout<<arr[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    //deleting column's at first
+    for(int i=0;i<n;i++){
+        delete [] arr[i];
+    }
+    //lastly deleting rows
+    delete []arr;
+    return 0;
+}
