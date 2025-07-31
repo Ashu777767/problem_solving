@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#include<iostream>
+using namespace std;
+
+int binarySearch(int arr[],int s,int e ,int key) {
+
+  
+
+    int mid = s + (e-s)/2;
+
+     //base condtion
+     if(s>e)
+     return 0;
+     if(arr[mid]==key)
+     return mid; 
+     if(arr[mid]>key){
+         return binarySearch(arr,s,mid-1,key);
+     }
+     else if(arr[mid]<key){
+        return binarySearch(arr,mid+1,e,key); 
+     } 
+     
+     
+}
+
+
+int main() { 
+
+    int even[6] = {2,4,6,8,12,18};
+    int odd[5] = {3, 8, 11, 14, 16};
+    int size=6;
+    
+    int s = 0;
+    int e = size-1;
+
+
+    int evenIndex = binarySearch(even,s,e, 6);
+
+    cout << " Index of 6 is " << evenIndex << endl;
+
+    // int oddIndex = binarySearch(odd, 5, 14);
+
+    // cout << " Index of 14 is " << oddIndex << endl;
+
+
+    return 0;
+}
