@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+#include<iostream>
+using namespace std;
+int firstoccurence(int *arr,int s,int e,int val,int key){
+    int mid=s+(e-s)/2;
+    if(s>e)
+    return val;
+    if(arr[mid]==key){
+        val=mid;
+        return  firstoccurence(arr,s,mid-1,val,key);
+    }
+    if(key>arr[mid]){
+        return  firstoccurence(arr,mid+1,e,val,key);
+    }
+    else if(key<arr[mid]){
+        return  firstoccurence(arr,s,mid-1,val,key);
+    }
+    
+}
+
+int main() {
+
+int arr[]={1,2,8,8,8,8,8};
+int n=7;
+int s=0;
+int e=n-1;
+int val=-1;
+int key=8;
+int ans = firstoccurence(arr,s,e,val,key);
+cout<<ans<<endl;
+
+}
