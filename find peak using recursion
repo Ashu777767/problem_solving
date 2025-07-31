@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#include<iostream>
+using namespace std;
+int findPeak(int arr[],int s,int e) {
+
+   
+    int mid = s + (e-s)/2;
+
+   //base condition
+     if(s==e)
+      return s;
+      if(arr[mid]<arr[mid+1]){
+          return findPeak(arr,mid+1,e);
+      }
+      else{
+          return findPeak(arr,s,mid);
+      }
+       
+}
+
+int main() {
+	int arr[] = {6,7,8,9,10,1,2,3,4};
+	int n = 9;
+	 int s =0, e = n-1;
+ int ans =	findPeak(arr,s,e);
+ cout<<arr[ans]<<endl;
+
+}
