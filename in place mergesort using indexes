@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+
+#include<iostream>
+
+using namespace std;
+void merge(int * arr, int s, int e) {
+    int mid = s + (e - s) / 2;
+    int start2 = mid + 1;
+    if (arr[mid] <= arr[start2])
+        return;
+    int val, index;
+    while (s <= mid && start2 <= e)
+    {
+        if (arr[s] <= arr[start2]) {
+            s++;
+        }
+        else {
+            val = arr[start2];
+            index = start2;
+
+
+            while (index != s) {
+                arr[index] = arr[index - 1];
+                index--;
+            }
+            arr[s] = val;
+
+            s++;
+            mid++;
+            start2++;
+        }
+    }
+}
+void mergesort(int * arr, int s, int e) {
+
+    if (s >= e) {
+        return;
+    }
+    int mid = s + (e - s) / 2;
+    mergesort(arr, s, mid);
+    //right
+    mergesort(arr, mid + 1, e);
+    // sort and merge araays
+    merge(arr, s, e);
+}
+
+int main() {
+    int arr[] = {
+        3,
+        1,
+        4,
+        2,
+        7,
+        6,
+        3,
+        17,
+        10
+    };
+    int n = 9;
+    mergesort(arr, 0, n - 1);
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+
+
+}
