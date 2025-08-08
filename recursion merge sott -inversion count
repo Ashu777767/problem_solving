@@ -49,16 +49,16 @@ int mergesort(vector<int> &arr,int s,int e){
     }
     int mid = s+(e-s)/2;
     //left mergesort
-  res+=  mergesort(arr,s,mid);
+  res+=  mergesort(arr,s,mid); //inversions count on left side x>y
     //right part
-   res += mergesort(arr,mid+1,e);
+   res += mergesort(arr,mid+1,e);  //inversions count on right  side x>y
     //merging
-   res+= merge(arr,s,e);
+   res+= merge(arr,s,e); //inversions between left(x) and right(y) arrays x>y
    return res;
 }
 
     int inversionCount(vector<int> &arr) {
-        return mergesort(arr,0,arr.size()-1);
+        return mergesort(arr,0,arr.size()-1); //total inversions in the array
         
     }
 };
