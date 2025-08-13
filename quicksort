@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+int partition(int *arr,int s,int e){
+    int n = e+1;
+    int count = 0;
+    for(int i =s+1;i<n;i++){
+        if(arr[i]<=arr[s]){
+            count++;
+        }
+    }
+    int pivot = count+s;
+    swap(arr[s],arr[count+s]);
+    int i = s;
+    int j = e;
+    while(i<pivot && j>pivot){
+       while(arr[i]<=arr[pivot])
+       {
+           i++;
+       }
+       while(arr[j]>=arr[pivot])
+       {
+           j--;
+       }
+       if(i<pivot && j>pivot){
+           swap(arr[i++],arr[j--]);
+       }
+    }
+    return pivot;
+}
+void quicksort(int *arr,int s,int e){
+    //base case
+    if(s>=e){
+        return ;
+    }
+   int partitions =  partition(arr,s,e);
+   //left side pe quicksort karde
+   quicksort(arr,s,partitions-1);
+   //right side pe quicksort
+   quicksort(arr,partitions+1,e);
+}
+
+
+
+int main() {
+	int arr[] = {2,4,1,6,9,9,9,9,9};
+	int s = 0;
+	int e = 8;
+	quicksort(arr,s,e);
+	for(int i =0;i<=e;i++){
+	    cout<<arr[i]<<" ";
+	}
+
+}
