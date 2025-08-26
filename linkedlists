@@ -1,0 +1,141 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;              //declaration part
+    Node* next;   
+    
+    //constructor
+    Node (int val){
+        data = val;
+        next = NULL;
+    }
+    
+};
+class mylist{
+    Node* head;  // sab heap memory mai banta hai toh pointer use karte hai derefernce keliye cuz heap returns only address
+    Node* tail;
+public:
+    mylist(){
+        head = tail =  NULL;
+    }
+    
+        void push_front(int  val){
+            Node* newnode = new Node(val); // ek new node banake de deta hai
+            //case 1 linked list khali ho
+            if(head == NULL){
+                head = tail =  newnode; //both head and tail ek hi node pe aageyenge
+                return;
+            }
+            else{
+                newnode->next = head;//new ko phele node se connect kiya thaki lost na ho 
+                head = newnode;//phir head pointer to piche le aya phele node pe jo ki naya node push kiya hai
+                
+            }
+            
+        }
+        //ab push_back karenge
+        void push_back(int val){
+            Node* newnode = new Node(val);
+            if(head == NULL){
+                head = newnode;
+                return;
+            }
+            else{
+                tail->next = newnode;
+                                      //newnode->next = NULL;
+                tail = newnode;
+            }
+            
+        }
+        //ab pop_front
+        void pop_front(){
+            if(head == NULL){
+                //kehde empty hai
+                return;
+            }
+            Node*temp = head;
+            head = head->next;
+            temp->next = NULL;
+            delete temp;
+        }
+        //ab pop_back
+        void pop_back(){
+            if(head == NULL){
+                return;
+            }
+            Node*temp = head;
+            while(temp->next != tail){//tail ka pichla value nikalke dega
+                temp = temp->next;
+            }
+            temp->next = NULL; //tail ki previous value pe agle address null kardii
+            //ab delete karde tail ki value
+            delete tail;//tail me memory delete hogi naa ki tail as a variable
+            tail = temp;//ab hogya pop back;
+        }
+        //insert kar middle mai
+        void insertInmiddle(int val,int pos){
+            //edge cases
+            if(pos<0){
+            return;
+            }
+            if(pos == 0){ //matlab ek tara se push_front hogya bhai
+                push_front(val);
+            }
+            Node* temp = head;
+            for(int i = 0;i<pos-1;i++){
+                temp = temp->next;
+            }
+            if(temp == NULL){
+                cout<<"pos invalid"<<endl;
+                return;
+            }
+            Node* newnode = new Node(val);
+            newnode->next = temp->next; //new node ko ko agle node se phele connect kiya
+            temp->next = newnode; //uske baad pos-1 node ko newnode se connect kiya
+        }
+        //search karle element kaha pe hai
+        int searchElemet(int key){
+            int pos = 0;
+            Node* temp = head;
+            while(temp!=NULL){
+                if(temp->data == key){
+                    return pos;
+                }
+                else{
+                    temp = temp->next;
+                    pos++;
+                }
+            }
+            return -1;
+        }
+        //chal phele print likthe hai
+        void printll(){
+            if(head == NULL){
+                return;
+            }
+            Node* temp = head; //agar khali nhi hai toh ek temp node chahiye taki treverse kar saku
+            while(temp != NULL){ //agar != tail kiya toh ek value kam print kiya
+                cout<<temp->data<<"->";//ek bari dry run kar paper pe
+                temp = temp->next;
+            }
+            cout<<"NULL"<<endl;
+        }
+
+        
+};
+int main() {
+	mylist ll;
+	ll.push_front(4);
+	ll.push_front(3);
+	ll.push_front(2);
+	ll.push_front(1);
+	
+	ll.push_back(5);
+	ll.push_back(6);
+	ll.pop_front();
+	ll.pop_back();
+	ll.insertInmiddle(7,1);
+	ll.printll();
+   cout<<"the searched element ans is:"<<ll.searchElemet(1)<<endl;
+}
