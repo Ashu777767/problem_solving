@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Stack{
+    //using vector
+    vector<int>v;
+    public:
+        void push(int val){
+            v.push_back(val);  //pushes the val in vector stack
+        }
+        
+        void pop(){
+            v.pop_back();    //pops the top or last value
+        }
+        int  top(){
+            return v[v.size()-1];  //returns the top or last value
+        }
+        bool empty(){
+            return v.size() == 0;
+        }
+};
+
+int main() {
+	Stack s;
+	s.push(10);
+	s.push(20);
+	s.push(30);
+	
+	//s.pop();
+	
+	while(!s.empty()){
+	    cout<<s.top()<<" ";
+	    s.pop();
+	}
+     
+}
+class Stack{
+    //using linked list
+    list<int>ll;   //stl
+    public:
+        void push(int val){
+            //if i give input 10->20->30 then output as per stack should be 30->20->10 that whats stack is known lifo so we push at front
+             ll.push_front(val);  //head should point to latest node like 
+             //pushes the val in linkedlist as head points to first node so we do push front where head will point
+        }
+        
+        void pop(){
+            ll.pop_front();    //as head points to top node we will pop also front only
+        }
+        int  top(){
+            return ll.front();  //head node is the top node so front
+        }
+        bool empty(){
+            return ll.size() == 0;
+        }
+};
+
+int main() {
+	Stack s;
+	s.push(10);
+	s.push(20);
+	s.push(30);
+	s.push(40);
+	
+	//s.pop();
+	
+	while(!s.empty()){
+	    cout<<s.top()<<" ";
+	    s.pop();
+	}
+}
+
+
+
+
+//using stack stl
+
+int main() {
+	stack<int> s;
+	s.push(10);
+	s.push(20);
+	s.push(30);
+	
+	//s.pop();
+	
+	while(!s.empty()){
+	    cout<<s.top()<<" ";
+	    s.pop();
+	}
+}
