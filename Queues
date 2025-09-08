@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node{    //queue using ll;
+  public:
+  int data;
+  Node* next;
+  
+  Node(int val){
+      data = val;
+      next = NULL;
+  }
+  
+};
+class Queue{     //linkng class of ll via queue
+  Node* head;
+  Node* tail;
+ public:
+    Queue(){
+    head = tail = NULL;
+  } 
+  void push(int val){     //enqueue called in queue ds
+      Node* newNode = new Node(val);   //Pushing from rear end;   first in(fi)
+      if(empty()){
+          head = tail = newNode;
+          return;
+      }
+      tail->next = newNode;
+      tail = newNode;
+  } 
+       dqueue called in queue ds for pop
+  void pop(){            //poping from front end   (fo) completes first in first out
+      if(empty()){
+         cout<<"ll is empty"<<endl;
+          return;
+      }
+      Node* temp = head;
+      head = head->next;
+      delete temp;
+        if(head  == NULL){
+            tail = NULL     to protect tail from becoming the dangling pointer
+        }
+  }
+  
+  int front(){             //geeting the front value
+      return head->data;
+      
+  }
+  
+  bool empty(){            //checks empty or not
+      return head == NULL;
+  }
+  
+  
+  
+};
+
+int main() {
+	Queue q;
+	q.push(1);  
+    q.push(2);
+    q.push(3);
+    
+    while(!q.empty()){
+        cout<<q.front()<<" ";
+        q.pop();
+    }
+	
+return 0;
+}
+#include <bits/stdc++.h>    //using STL queue
+using namespace std;
+int main() {
+	queue<int>q;
+	q.push(1);  
+    q.push(2);
+    q.push(3);
+    
+    while(!q.empty()){
+        cout<<q.front()<<" ";
+        q.pop();
+    }
+}
+#include <bits/stdc++.h> 
+using namespace std;
+int main(){
+    deque<int>dq;     //this is double ended queue where push pop and can be done by both side includinf front() and back()
+    
+     dq.push_back(1);
+     dq.push_back(2);
+     dq.push_back(3);
+     dq.push_front(4);
+     dq.push_back(7);
+     dq.pop_back();
+     while(!dq.empty()){
+         cout<<dq.front()<<" and "<<dq.back()<<" ";
+         dq.pop_front();
+     }
+    return 0;
+}
+
