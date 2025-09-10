@@ -10,8 +10,8 @@ public:
         cap = size;
         arr = new int[cap];
         currSize = 0;
-        f = 0;
-        r = -1;
+        f = 0;  // here we can keep at -1 but then we need to modify according to that so we generally take it as 0 because it returns the first node only
+        r = -1; //so we move rear to index 0 when a element is needed to be pushed and include the value;
     }
     void push(int val)
     {
