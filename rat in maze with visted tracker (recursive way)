@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void helper(vector<vector<int>>& mat,int row,int col,vector<string>& ans,string path,vector<vector<bool>>& vis,int n)
+{
+    if(row<0 || col<0 || row>=n || col>=n|| mat[row][col] == 0 ||vis[row][col] == true){ // boundry condition
+        return ;
+    }
+    
+    if(row == n-1 && col == n-1){  //solution base case
+        ans.push_back(path);
+        return ;
+    }
+    
+    vis[row][col] = true;
+    //recursive call
+    helper(mat,row+1,col,ans,path+'D',vis,n);//down
+    helper(mat,row-1,col,ans,path+'U',vis,n);//up
+    helper(mat,row,col-1,ans,path+'L',vis,n);//left
+    helper(mat,row,col+1,ans,path+'R',vis,n);//right
+    //bactrak for another path to revisit from another path reset to unvisited
+    vis[row][col] = false;
+    
+}
+
+vector<string>findpath(vector<vector<int>>& mat)
+{
+    int n = mat.size();
+    vector<string>ans;
+    string path = "";
+    vector<vector<bool>>vis(n,vector<bool>(n,false)); // to ensure prevention from infinite looping due to up call wee need visited to keep track of it and prevent revisiting
+    helper(mat,0,0,ans,path,vis,n);
+    
+    return ans;
+}
+
+
+int main() {
+	vector<vector<int>>mat = {{1,0,0,0},{1,1,0,1},{1,1,0,0},{0,1,1,1}};
+	vector<string>ans = findpath(mat);
+	for(string path:ans){
+	    cout<<path<<endl;
+	}
+    return 0;
+}
