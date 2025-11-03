@@ -1,0 +1,266 @@
+//lecture 1: revision
+// const profile = {
+//     name:"Ashutosh Kumar Jha",
+//     follow:"following",
+//     postCount:200,
+//     Bio:"student at sairam",
+
+// };
+// console.log(profile);
+//lecture 2: revision
+// let val = prompt("enter a number:");
+// if(val%5 === 0){
+//     console.log("it is a multiple of five");
+// }
+// else{
+//     console.log("its not a multiple of 5");
+// }
+//question 2
+
+// let grade  = prompt("enter your marks:");
+// if(grade>= 80 && grade<= 100){
+//     console.log("A grade");
+// }
+// else if(grade>=70  && grade<=79)
+// {
+//     console.log("B grade");
+// }
+// else if(grade>=50 && grade<=69){
+//     console.log("C or D grade");
+// }
+// else{
+//     console.log("F grade");
+// }
+
+//lecture 3: revision
+
+// let Name = prompt("enter your full name");
+// console.log(`@${Name}${Name.length}`);
+
+//lecture 4:revision
+
+// let arr = ["Bloomberg","Microsoft","Uber","Google","IBM","Netflix"];
+// console.log(arr.shift()); //removes the first value for orignal array as it is mutable
+// console.log(arr);
+// console.log(arr.splice(1,1,"ola"));
+// console.log(arr);
+// console.log(arr.splice(5,1,"Amazon")); // can use push also & can be done using concat also
+// console.log(arr);
+
+//lecture 5 :revision
+//question 1
+// let str = "apple";
+// function VowelsCount(str){
+//     let count = 0;
+//     for(let val of str){
+//         if(val == 'a'|| val == 'e' || val == 'i' || val == 'o' ||val == 'u'){
+//           count++;
+//         }
+//     }
+//     return count
+// }
+// console.log(VowelsCount(str));
+
+// let Arrowfun = (str)=>{
+//      let count = 0;
+//     for(let val of str){
+//         if(val == 'a'|| val == 'e' || val == 'i' || val == 'o' ||val == 'u'){
+//           count++;
+//         }
+//     }
+//     return count;
+// }
+// console.log(Arrowfun(str)); //this the way to do with arrowfun
+
+//question 2
+
+// let arr = [1,2,3,4,5,6,7,8,9];
+
+// arr.forEach((val)=>{  //matlab har arr ke val ki square kuki foreach ko milte ek value arr se har baar
+//     console.log(val*val);
+// })
+
+// let cal = (val)=>{      //niche foreach call kar raha ek value ke saath jo foreach pe hoti har baar
+//     console.log(val*val);
+// }
+
+// arr.forEach((cal));  //cal ko call kiya ek hidden parameter bhi gaya val karke becoz of foreach jo upar jake val bana cal mai
+
+
+
+//   let arr = [1,2,3,4,5];
+//   let newArr = arr.map(myFunction);  //map creates a new arr and stores values according to the result performed by the callbackfunction result for each value of arr
+
+//   function myFunction(num){ //it is a call back function
+//     return num*10;
+//   }
+//   console.log(newArr); //finally prints the updated array
+
+//same filter bhi esa hi banta hai lekin woh bus true yah false return kar sakta hai 
+
+//question 4
+// let arr = [87,74,91,95,47,93];
+// let newArr = arr.filter(checkFun);
+
+// function checkFun(val)
+// {
+//    return val>90;  //returns true or false only
+// } 
+// console.log(newArr);  //filter the marks above 90
+
+//question 5
+
+// let n = Number(prompt("enter a number"));
+// let arr = [];
+// for(let i = 1;i<=n;i++){
+//   arr.push(i);
+// }
+// console.log(arr);
+
+// const output = arr.reduce((res,curr)=>  //res performes operation and gives a single value to do
+// {
+//     return res+curr;
+// })
+
+// console.log(output);
+
+//lecture 6 :dom
+//DOM allows JavaScript to control, read, and change the web page after it’s loaded — without reloading it.
+//So basically, DOM makes web pages dynamic and interactive, instead of just plain static HTML.
+// it is used to access the html element and change it's content dynamically
+//DOM connects HTML (structure) and JavaScript (logic) so that your web page can react, change, and feel alive 💫
+// part 1 practice
+
+//Q1
+// let heading = document.createElement("h2");//create's a h2 tag using js dom's create element
+// heading.innerText = "Hello javascript";//adding text using dom properties
+// heading.innerText+= "From Apna College"; //appending using innerText
+// document.body.appendChild(heading); // this attaches the html element on webpage to show the visibly on ui
+
+//Q2
+//create three div with same class name and add some unique text and add them to webpage
+// Create and append 3 divs dynamically
+// for (let i = 1; i <= 3; i++) {
+//     // create a new div element
+//     let div = document.createElement("div");
+
+//     // add a common class name
+//     div.className = "box";
+
+//     // add unique text
+//     div.innerText = "This is Box " + i;
+
+//     // optional styling to make them visible
+//     div.style.border = "2px solid black";
+//     div.style.margin = "10px";
+//     div.style.padding = "10px";
+
+//     // append each div to body
+//     document.body.appendChild(div);
+// }
+
+//part-2
+//understanding dom manipulation
+// 1️⃣ Select the container
+// let container = document.querySelector("#container");
+
+// // 2️⃣ Create new elements
+// let box1 = document.createElement("div");
+// box1.innerText = "🟩 prepend() → Added at the START (inside container)";
+// box1.style.background = "lightgreen";
+// box1.style.margin = "5px";
+// box1.style.padding = "5px";
+
+// let box2 = document.createElement("div");
+// box2.innerText = "🟦 append() → Added at the END (inside container)";
+// box2.style.background = "lightblue";
+// box2.style.margin = "5px";
+// box2.style.padding = "5px";
+
+// let box3 = document.createElement("div");
+// box3.innerText = "🟨 before() → Added BEFORE the container";
+// box3.style.background = "khaki";
+// box3.style.margin = "5px";
+// box3.style.padding = "5px";
+
+// let box4 = document.createElement("div");
+// box4.innerText = "🟪 after() → Added AFTER the container";
+// box4.style.background = "plum";
+// box4.style.margin = "5px";
+// box4.style.padding = "5px";
+
+// // 3️⃣ Insert them at different places
+// container.prepend(box1); // inside, at top
+// container.append(box2);  // inside, at bottom
+// container.before(box3);  // outside, before
+// container.after(box4);   // outside, after
+
+// // 4️⃣ Delete something after a delay (to visualize remove())
+// setTimeout(() => {
+//   box2.remove(); // remove the append() element after 3 seconds
+//   console.log("❌ Removed the blue box (append example)");
+// }, 3000);
+
+
+// practice qs 1
+// let but = document.createElement("button");
+// but.innerText = "CLICK ASHU!";
+// but.style.backgroundColor = "red";
+// but.style.color = "white";
+// document.body.prepend(but);
+
+// practice qs2
+// select the <p> element
+// let para = document.querySelector(".msg");
+
+// // add a new class to it
+// para.classList.add("highlight");  //this is the proper way to add another class to a html element conataining already some class
+// if we use setattributes or className it overwrites and not writes for example you can see here
+// para.className = "highlight";
+// That replaces the old class (msg) with the new one (highlight).
+
+// Result:
+
+// html
+// Copy code
+// <p class="highlight">Hello, JavaScript!</p>
+// 💥 The .msg class is lost — only the yellow background will show, no blue text.
+// let p = document.querySelector(".para");
+// p.setAttribute("class", "newClass");
+// 💡 What happens:
+// 👉 The old class is completely replaced by the new one.
+// Now the paragraph has only newClass, not para.
+
+// So now only yellow background will apply — blue color styling is lost.
+
+//Lecture-8 events
+// let btn = document.getElementById("btn");
+
+// // event handler  , shows the whole object detailes on console
+// btn.onclick = (e) => {
+//   console.log(e);            // prints the whole event object
+//   console.log(e.type);       // shows event type → "click"
+//   console.log(e.target);     // shows which element was clicked → <button>
+//   console.log(e.clientX);    // x-position of mouse when clicked
+//   console.log(e.clientY);    // y-position of mouse when clicked
+// }
+//Event listeners
+// let btn = document.getElementById("btn");
+
+// function sayHello() {
+//   console.log("Button was clicked!");
+// }
+
+// // Add event
+// btn.addEventListener("click", sayHello);
+
+// // Remove event after 5 seconds
+// setTimeout(() => {
+//   btn.removeEventListener("click", sayHello);
+//   console.log("Event removed!");
+// }, 5000);  //waits for 5000 milliseconds and then runs this section of the code
+
+//practice qs-1 this is the simplest to do if want we can also refer about in note
+// let btn = document.getElementById("btn2");
+// btn.addEventListener("click",() => {
+//   document.body.classList.toggle("dark");});  //here we learnt about toggle button which toggles to given class and removes if already exists
