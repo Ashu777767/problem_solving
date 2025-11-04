@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* left;
+    Node* right;
+    
+    Node(int val){
+        data = val;
+        left = right = NULL;
+    }
+};
+static int idx = -1;
+Node* buildTree(vector<int>preorder){
+
+    idx++;
+    if(preorder[idx] == -1){
+        return NULL;
+    }
+        Node* root = new Node(preorder[idx]);
+        root->left = buildTree(preorder); //creates left subtree
+        root->right = buildTree(preorder); //creates rigth subtree
+        return root; //connect the builded subroot to above roots
+        
+}
+int height(Node*root)
+{
+    if(root == NULL) return 0;
+    int leftn = height(root->left);
+    int rightn = height(root->right);
+    return max(leftn,rightn)+1;
+}
+int Count(Node*root)
+{
+    if(root == NULL) return 0;
+    int leftn = Count(root->left);
+    int rightn = Count(root->right);
+    return ((leftn+rightn)+1);
+}
+int Sum(Node*root)
+{
+    if(root == NULL) return 0;
+    int leftn = Sum(root->left);
+    int rightn = Sum(root->right);
+    return ((leftn+rightn)+root->data);
+}
+
+int main() {
+	// your code goes here
+	vector<int>preorder = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
+	Node* root = buildTree(preorder);
+	
+	cout<<"the height of tree is:"<<height(root)<<endl;
+	cout<<"the count of nodes is:"<<Count(root)<<endl;
+	cout<<"the Sum of nodes is:"<<Sum(root);
+	return 0;
+
+}
