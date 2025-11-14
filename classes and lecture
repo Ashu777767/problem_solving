@@ -1,0 +1,41 @@
+// const student = {
+//     fullName:"Ashutosh",
+//     marks :94.4,
+//     printMarks : function(){ 
+//         console.log("student marks",this.marks);//this is used to show that the mark is from this object only
+//     },
+// //prototype provides a lot more methods my itself which we can use to perform some actions and also we can add our proto as given below
+// };
+// const student2 = {
+// fullName:"Ashu",
+
+// };
+// //if both have same protoype inside them then it chooses the object's prototype or value
+
+// student2.__proto__ = student; //to add our own proto in the object
+//page 2
+
+//practice  
+
+let msg = "secert information";
+class User{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    viewData(){
+        console.log("DATA IS:",msg);
+    }
+}
+class Admin extends User{
+    constructor(name,age){
+        super(name,age);
+    }
+    editdata(){
+        msg = "new information";
+    }
+}
+let student1 = new User("ashu","20");
+let student2 = new User("dhoni","40");
+
+let admin = new Admin("basu","33");
