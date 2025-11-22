@@ -1,0 +1,121 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node*left;
+    Node*right;
+    Node(int val){
+        data = val;
+        left = right = NULL;
+    }
+    
+};
+Node* insert(Node*root,int val){
+    if(root == NULL) return new Node(val);//for new node if there is no node at that palce
+    if(val <root->data){ //if less then left node
+        root->left = insert(root->left,val);
+    }
+    else{
+        root->right = insert(root->right,val); //else here
+    }
+    return root; //then after placeing each node retures the top most node
+}
+
+    Node* buildBST(vector<int> arr){
+        Node* root = NULL;
+        for(int val:arr){
+            root = insert(root,val); //we need the root everytime to check
+        }
+        return root;
+    }
+    
+void inorder(Node* root){  //prints as left root right which also can be called sorted for BST as it also followes left<root<right
+    if(root == NULL){
+        return ;
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+bool search(Node* root,int key){
+   
+    if(root == NULL) return false;
+    if(root->data == key){
+        return true;
+    }
+    if(key < root->data){
+       return  search(root->left,key);  //in BST it goes either way not on both left and right so it is better use return directly
+        
+    }
+    else{
+      return search(root->right,key);
+    }
+    
+}
+//finding inorder succesor for two child conataining node deletion
+Node* getinordersuccesor(Node*root){
+    while(root != NULL && root->left != NULL){ //root-left check is enough the root ! =NULL is jsut for safety cases not mandatory
+        root = root->left;
+    }
+    return root;
+}
+//deletion
+Node* delNODE(Node* root,int key){
+    if(root == NULL) return NULL;
+    if(key<root->data){
+    root->left = delNODE(root->left,key);
+    }
+    else if(key>root->data){
+    root->right = delNODE(root->right,key);
+    }
+    else{
+        if(root->left == NULL){  //for case 1 and 2 if one child or no child
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if(root->right == NULL){
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        else{ //if two child
+        Node*IS = getinordersuccesor(root->right);
+        root->data = IS->data;
+        root->right = delNODE(root->right,IS->data);//deletes the inorder succesor node which is duplicate after replacing and then connnects the remaining subtree to root
+            
+        }
+        
+    }
+    return root;
+}
+Node* predeccesor(Node*root){
+    Node* pre = root->left;
+    while(pre!= NULL && pre->right!= NULL){
+        pre = pre->right;
+    }
+    return pre;  //finds the predesccor of a node 
+    //which is right most node of left node of a root node
+}
+Node* succesors(Node*root){
+     Node* succ = root->right;
+    while(succ != NULL && succ->left != NULL){
+        succ = succ->left;
+    }
+    return succ;//finds the succesor of a node 
+    //which is left most node of right node of a root node
+}
+int main() {
+	// your code goes here
+	vector<int>arr = {3,2,1,5,6,4};
+	Node* root = buildBST(arr);
+	inorder(root);
+	cout<<endl;
+	//pre and post deccesors
+	Node* pre = predeccesor(root->right);
+	Node* succ = succesors(root->right);
+	cout<<"predeccesor is "<<pre->data<< "&"<<"succesor is "<<succ->data<<endl;
+	
+	
+}
