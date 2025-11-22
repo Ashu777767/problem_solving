@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+// Function to find predecessor and successor of a given key in BST
+vector<int> getPredSucc(Node* root, int key) {
+    Node* curr = root;
+    Node* pred = NULL;   // predecessor
+    Node* succ = NULL;   // successor
+
+    // Step 1: Find the key
+    while (curr != NULL) {
+        if (key < curr->data) {
+            succ = curr;           // possible successor
+            curr = curr->left;
+        }
+        else if (key > curr->data) {
+            pred = curr;           // possible predecessor
+            curr = curr->right;
+        }
+        else {
+            // Key found
+
+            // Step 2: For predecessor → go to left subtree and take rightmost
+            if (curr->left != NULL) {
+                Node* temp = curr->left;
+                while (temp->right != NULL) {
+                    temp = temp->right;
+                }
+                pred = temp;
+            }
+
+            // Step 3: For successor → go to right subtree and take leftmost
+            if (curr->right != NULL) {
+                Node* temp = curr->right;
+                while (temp->left != NULL) {
+                    temp = temp->left;
+                }
+                succ = temp;
+            }
+
+            break;
+        }
+    }
+
+    vector<int> ans(2);
+    
+    ans[0] = pred ? pred->data : -1;   // predecessor
+    ans[1] = succ ? succ->data : -1;   // successor
+
+    return ans;
+}
+
+int main() {
+    Node* root = new Node(6);
+    root->left = new Node(3);
+    root->right = new Node(8);
+
+    root->left->left = new Node(1);
+    root->left->right = new Node(4);
+
+    root->right->left = new Node(7);
+    root->right->right = new Node(9);
+
+    int key = 7;
+
+    vector<int> ans = getPredSucc(root, key);
+
+    cout << "Predecessor: " << ans[0] << endl;
+    cout << "Successor: " << ans[1] << endl;
+
+    return 0;
+}
