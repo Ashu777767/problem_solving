@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Graph{
+public:
+  int v;
+  list<int>*l;
+  Graph(int v){
+      this->v = v;
+      l = new list<int>[v];
+  }
+  void add(int u,int v){
+      l[u].push_back(v);
+      l[v].push_back(u);
+  }
+  void print(){   //bi directional graph
+      for(int i =0;i<v;i++){
+          cout<<i<<"->";
+          for(int val:l[i]){
+              cout<<val<<"  ";
+          }
+          cout<<endl;
+      }
+      cout<<"printing finished"<<endl;
+  }
+  void BFS(){
+      queue<int>q;
+      vector<bool>V(v,false);
+      q.push(0);
+      V[0] = true;
+      while(!q.empty()){
+          int node = q.front();
+          cout<<node<<" ";
+          q.pop();
+          for(int val:l[node]){
+              if(!V[val]){
+                  V[val] = true;
+                  q.push(val);
+              }
+              
+          }
+      }
+      
+  }
+};
+int main() {
+	// your code goes here
+	Graph g(5);
+	g.add(0,1);
+	g.add(1,2);
+	g.add(1,3);
+	g.add(2,3);
+	g.add(2,4);
+   
+   g.print();
+   g.BFS();
+    
+}
