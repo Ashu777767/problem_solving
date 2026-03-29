@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Graph{
+public:
+  int v;
+  list<int>*l;
+  Graph(int v){
+      this->v = v;
+      l = new list<int>[v];
+  }
+  void add(int u,int v){
+      l[u].push_back(v);
+      l[v].push_back(u);
+  }
+  void print(){   //bi directional graph
+      for(int i =0;i<v;i++){
+          cout<<i<<"->";
+          for(int val:l[i]){
+              cout<<val<<"  ";
+          }
+          cout<<endl;
+      }
+      cout<<"printing finished"<<endl;
+  }
+  void BFS(){
+      queue<int>q;
+      vector<bool>V(v,false);
+      q.push(0);
+      V[0] = true;
+      while(!q.empty()){
+          int node = q.front();
+          cout<<node<<" ";
+          q.pop();
+          for(int val:l[node]){
+              if(!V[val]){
+                  V[val] = true;
+                  q.push(val);
+              }
+              
+          }
+      }
+      
+  }
+  void DfsHelper(int u,vector<bool>&vis){
+      cout<<u<<" ";
+      vis[u] = true;
+      for(int val:l[u]){
+          if(!vis[val]){
+              DfsHelper(val,vis);
+          }
+      }
+  }
+  
+  void DFS(){
+      int src =0;
+      vector<bool>vis(v,false);
+      DfsHelper(src,vis);
+  }
+  
+  // Cycle Detection in undirected graph using using DFS using par t.c //O(V+E)
+  bool DetectCycle(int src,vector<int>& vis,int par){
+      vis[src] = true;
+      list<int>neighbour = l[src];
+      for(int node:l[src]){
+          if(!vis[node]){
+              if(DetectCycle(node,vis,src))return true; //cycle detected;
+          }
+          else if(node!=par){
+              return true;//cycle present;
+              
+          }
+      }
+      return false;
+  }
+  
+  bool IsCycleDfs(){
+      vector<int>vis(v,false);
+      for(int i = 0;i<v;i++){
+          if(!vis[i]){
+              if(DetectCycle(0,vis,-1)) return true;
+          }
+      }
+      return false;
+  }
+  
+};
+int main() {
+	// your code goes here
+	Graph g(5);
+	g.add(0,1);
+	//g.add(0,2);
+	g.add(0,3);
+	g.add(1,2);  //for DFS
+	g.add(3,4);
+   
+//   g.print();
+//   g.BFS();
+//   g.DFS();
+    cout<<g.IsCycleDfs();
+}
